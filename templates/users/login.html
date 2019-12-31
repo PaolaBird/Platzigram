@@ -1,0 +1,24 @@
+{% extends "users/base.html" %}
+{% block head_content %}
+<title>Platzigram login</title>
+{% endblock %}
+
+{% block container %}
+
+{% if form.error %}
+<p class="alert alert-danger">El usuario y la contaseña no coninciden; intenta de nuevo</p>
+{% endif %}
+<form action="{% url "users:login" %}" method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Username" name="username">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="password" name="password">
+    </div>
+    <button class="btn btn-primary btn-block mt-5" type="submit">Iniciar sesión</button>
+</form>
+
+<p class="mt-4">¿Aún no tienes una cuenta? <a href="{% url 'users:singup' %}" >¡Registrate aqui! </a> </p>
+{% endblock %}
